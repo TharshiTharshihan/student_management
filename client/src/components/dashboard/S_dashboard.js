@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-function S_dashboard() {
+function Sdashboard() {
   return (
     <>
       <div className="w-full relative mt-0 shadow-2xl rounded my-24 overflow-hidden">
@@ -142,4 +142,4 @@ function S_dashboard() {
   );
 }
 
-export default S_dashboard;
+export default Sdashboard;

@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
 
-function Teacher_S() {
+function TeacherS() {
   const [fname1, setfname] = useState("");
   const [lname1, setlname] = useState("");
   const [em, setemail] = useState("");
@@ -27,7 +27,12 @@ function Teacher_S() {
     }
 
     axios
-      .post("http://localhost:5000/t-signup", { fname1, lname1, em, pw })
+      .post("http://localhost:5000/api/teachers/signup", {
+        fname1,
+        lname1,
+        em,
+        pw,
+      })
       .then((res) => {
         Swal.fire(
           "Congratulations! You Have Successfully Registered with Us 😊",
@@ -158,4 +163,4 @@ function Teacher_S() {
   );
 }
 
-export default Teacher_S;
+export default TeacherS;

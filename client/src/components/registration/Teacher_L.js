@@ -3,7 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
 
-function Teacher_L() {
+function TeacherL() {
   const [em, setemail] = useState("");
   const [pw, setpassword] = useState("");
   const navigate = useNavigate();
@@ -11,22 +11,40 @@ function Teacher_L() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/t-login", { em, pw }).then((res) => {
-      if (res.data.status === "success") {
-        navigate("/t-d");
-        Swal.fire(
-          " You Have Successfully loggedin as Teacher 😊",
-          "",
-          "success"
-        );
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "invalid Login Credintials",
-        });
-      }
-    });
+    axios
+      .post("http://localhost:5000/api/teachers/login", { em, pw })
+      .then((res) => {
+        if (res.data.status === "success") {
+          navigate("/t-d");
+          Swal.fire(
+            " You Have Successfully loggedin as Teacher 😊",
+            "",
+            "success"
+          );
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "invalid Login Credintials",
+          });
+        }
+      })
+      .catch((err) => {
+        // Check if the error response exists and has data
+        if (err.response && err.response.data && err.response.data.error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err.response.data.error, // This will show "No record found" or any other backend error
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong. Please try again!",
+          });
+        }
+      });
   };
   return (
     <section>
@@ -100,4 +118,4 @@ function Teacher_L() {
   );
 }
 
-export default Teacher_L;
+export default TeacherL;

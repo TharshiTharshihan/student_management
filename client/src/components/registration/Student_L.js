@@ -3,21 +3,20 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
 
-function Student_L() {
+function StudentL() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
-
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/s-login", { email, password })
+      .post("http://localhost:5000/api/students/login", { email, password })
       .then((res) => {
         if (res.data.status === "success") {
           navigate("/s-d");
           Swal.fire(
-            " You Have Successfully loggedin as Student 😊",
+            "You Have Successfully Logged in as Student 😊",
             "",
             "success"
           );
@@ -25,11 +24,28 @@ function Student_L() {
           Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "invalid Login Credintials",
+            text: "Invalid Login Credentials",
+          });
+        }
+      })
+      .catch((err) => {
+        // Check if the error response exists and has data
+        if (err.response && err.response.data && err.response.data.error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: err.response.data.error, // This will show "No record found" or any other backend error
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong. Please try again!",
           });
         }
       });
   };
+
   return (
     <section>
       {/* Container */}
@@ -102,4 +118,4 @@ function Student_L() {
   );
 }
 
-export default Student_L;
+export default StudentL;
