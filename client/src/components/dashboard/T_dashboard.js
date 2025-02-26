@@ -17,7 +17,7 @@ function T_dashboard() {
               className="h-24 w-24 object-cover rounded-full"
               alt="Profile"
             />
-            <h1 className="text-2xl font-semibold">Antonia Howell</h1>
+            <h1 className="text-2xl font-semibold">Teacher</h1>
             <h4 className="text-sm font-semibold">Joined Since '19</h4>
           </div>
         </div>

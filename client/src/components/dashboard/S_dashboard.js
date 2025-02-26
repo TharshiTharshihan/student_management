@@ -130,6 +130,9 @@ function S_dashboard() {
                     />
                   </div>
                 </div>
+                <button className="bg-green-600 text-white flex font-semibold w-32 py-2  px-4 justify-center  rounded-md shadow-md hover:bg-green-700 hover:shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105">
+                  Submit
+                </button>
               </form>
             </div>
           </div>
