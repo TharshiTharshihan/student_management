@@ -8,10 +8,13 @@ import Sdashboard from "./components/dashboard/S_dashboard";
 import StudentL from "./components/registration/Student_L";
 import TeacherL from "./components/registration/Teacher_L";
 import Home from "./components/Home";
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/s-signup" element={<StudentS />} />
@@ -21,6 +24,7 @@ function App() {
         <Route path="/t-d" element={<Tdashboard />} />
         <Route path="/s-d" element={<Sdashboard />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -23,7 +23,7 @@ export default function Home() {
               <div className="flex items-center">
                 <Link
                   to="/s-login"
-                  className="mr-5 items-center rounded-md bg-black px-6 py-3 font-semibold text-white md:mr-6 lg:mr-8"
+                  className="mr-5 items-center rounded-md bg-black  hover:bg-white px-6 py-3 font-semibold text-white transition hover:text-black md:mr-6 lg:mr-8"
                 >
                   Log In
                 </Link>

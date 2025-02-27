@@ -55,4 +55,33 @@ router.post("/login", (req, res) => {
     .catch(() => res.status(500).json({ error: "Server error" }));
 });
 
+//
+
+router.post("/signup", async (req, res) => {
+  const updates = req.body;
+
+  if (
+    !updates.s1 ||
+    !updates.s2 ||
+    !updates.s3 ||
+    !updates.s4 ||
+    !updates.s5 ||
+    !updates.s6 ||
+    !updates.s7 ||
+    !updates.s8 ||
+    !updates.s9
+  ) {
+    return res.status(400).json({ message: "Fill all fields" });
+  }
+  const newupdates = new studentModel(updates);
+
+  try {
+    await newupdates.save();
+    res.status(201).json({ status: "success", data: newupdates });
+  } catch (err) {
+    console.error("Error in marks adding", err.message);
+    res.status(500).json({ success: false, message: "server error" });
+  }
+});
+
 module.exports = router;
