@@ -32,8 +32,8 @@ export default function Home() {
                   className="flex max-w-full items-center font-bold"
                 >
                   <img
-                    src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a94bd85e6cf98_ArrowUpRight%20(4).svg"
-                    alt=""
+                    src="https://www.vidyalayaschoolsoftware.com/assets/images/school_software_1.png"
+                    alt="Education"
                     className="mr-2 inline-block max-h-4 w-5"
                   />
                   <p>login as Teacher</p>
@@ -42,7 +42,7 @@ export default function Home() {
             </div>
             {/* Hero Image */}
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/flowspark-1f3e0.appspot.com/o/Tailspark%20Images%2FPlaceholder%20Image.svg?alt=media&token=375a1ea3-a8b6-4d63-b975-aac8d0174074"
+              src="https://www.vidyalayaschoolsoftware.com/assets/images/school_software_1.png"
               alt=""
               className="inline-block h-full w-full max-w-2xl"
             />
