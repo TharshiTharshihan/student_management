@@ -10,6 +10,7 @@ import TeacherL from "./components/registration/Teacher_L";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import Form from "./components/student/Form";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/t-login" element={<TeacherL />} />
         <Route path="/t-d" element={<Tdashboard />} />
         <Route path="/s-d" element={<Sdashboard />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
       <Footer />
     </BrowserRouter>

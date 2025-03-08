@@ -16,6 +16,19 @@ function Sdashboard() {
   const [image, setImage] = useState("");
   const navigate = useNavigate();
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file || !file.type.startsWith("image/") || file.size > 2 * 1024 * 1024)
+      return alert("Invalid image file.");
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+      localStorage.setItem("uploadedImage", reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -33,7 +46,7 @@ function Sdashboard() {
       })
       .then((res) => {
         Swal.fire(
-          "Congratulations! You Have Successfully updated the marks😊",
+          "Congratulations! You Have Successfully updated the marks✅",
           "",
           "success"
         );
@@ -53,13 +66,22 @@ function Sdashboard() {
             className="bg w-full h-full object-cover object-center absolute z-0"
           />
           <div className="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
-            <img
-              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-              className="h-24 w-24 object-cover rounded-full"
-              alt="Profile"
-              name="image"
-              onChange={(e) => setImage(e.target.value)}
-            />
+            <label htmlFor="profilePic">
+              <img
+                name="image"
+                onChange={handleImageChange}
+                src={image || "https://via.placeholder.com/150"} // Default or selected image
+                className="h-24 w-24 object-cover rounded-full cursor-pointer"
+                alt="Profile"
+              />
+              <input
+                type="file"
+                id="profilePic"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+            </label>
             <h1 className="text-2xl font-semibold">Student</h1>
             <h4 className="text-sm font-semibold">Joined Since '19</h4>
           </div>
