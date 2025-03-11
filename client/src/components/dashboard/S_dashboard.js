@@ -14,6 +14,8 @@ function Sdashboard() {
   const [s8, setS8] = useState("");
   const [s9, setS9] = useState("");
   const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
+
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
@@ -56,6 +58,7 @@ function Sdashboard() {
         alert("Failed");
       });
   };
+
   return (
     <>
       <div className="w-full relative mt-0 shadow-2xl rounded my-24 overflow-hidden">
@@ -119,7 +122,6 @@ function Sdashboard() {
                   </h3>
                   <hr />
                 </div>
-
                 <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 ">
                   <div className="form-item w-full">
                     <label className="text-xl">Maths</label>

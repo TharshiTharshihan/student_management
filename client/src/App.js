@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import Form from "./components/student/Form";
+import AddNotes from "./components/teacher/AddNotes";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/t-d" element={<Tdashboard />} />
         <Route path="/s-d" element={<Sdashboard />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/addnotes" element={<AddNotes />} />
       </Routes>
       <Footer />
     </BrowserRouter>
