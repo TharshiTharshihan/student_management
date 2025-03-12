@@ -7,8 +7,11 @@ const cookieParser = require("cookie-parser");
 const db = require("./db");
 const studentRoutes = require("./routes/studentRoutes");
 const teacherRoutes = require("./routes/teacherRoutes");
+const pdfRoutes = require("./routes/pdfRoutes");
+const path = require("path");
 
 app.use(express.json());
+app.use("/files", express.static(path.join(__dirname, "files")));
 
 app.use(
   cors({
@@ -25,6 +28,7 @@ app.get("/", (req, res) => {
 app.use("/api/students", studentRoutes);
 app.use("/api/teachers", teacherRoutes);
 app.use("/api/students", studentRoutes);
+app.use("/api/pdfs", pdfRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

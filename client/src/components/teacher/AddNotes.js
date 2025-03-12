@@ -1,6 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { pdfjs } from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 function AddNotes() {
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("");
+  const [file, setFile] = useState(null);
+  const [module, setModule] = useState(null);
+  const [msg, setMsg] = useState("");
+  const [allImage, setAllImage] = useState(null);
+  const [pdfFile, setPdfFile] = useState(null); // To store the uploaded file ID
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getPdf();
+  }, []);
+  const getPdf = async () => {
+    const result = await axios.get("http://localhost:5000/api/pdfs/get-files");
+    console.log(result.data.data);
+    setAllImage(result.data.data);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("file", file);
+    console.log(name, file);
+
+    const result = await axios.post(
+      "http://localhost:5000/api/pdfs/upload-files",
+      formData,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+    console.log(result);
+    if (result.data.status === "ok") {
+      toast.success("uploaded successfully!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      getPdf();
+      navigate("/t-d");
+    }
+  };
+  const showPdf = (pdf) => {
+    // window.open(`http://localhost:5000/files/${pdf}`, "_blank", "noreferrer");
+    setPdfFile(`http://localhost:5000/files/${pdf}`);
+  };
+
   return (
     <section className="bg-gray-100">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -25,35 +87,41 @@ function AddNotes() {
           </div>
 
           <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
-            <form action="#" className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="relative flex flex-col">
                 <label className="font-serif mb-1 text-left">Name</label>
                 <input
-                  className="w-full rounded-md border border-red-950 p-3 text-sm"
+                  className="w-full rounded-md border border-blue-700 p-3 text-sm"
                   placeholder="Name"
                   type="text"
-                  id="name"
+                  name="name"
+                  required
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="font-serif mb-1 text-left">Email</label>
+                  <label className="font-serif mb-1 text-left">Module</label>
                   <input
-                    className="w-full rounded-md border-gray-200 p-3 text-sm"
-                    placeholder="Email address"
-                    type="email"
-                    id="email"
+                    className="w-full rounded-md border border-blue-700 p-3 text-sm"
+                    placeholder="Module"
+                    type="text"
+                    name="module"
+                    required
+                    onChange={(e) => setModule(e.target.value)}
                   />
                 </div>
 
                 <div>
-                  <label className="font-serif mb-1 text-left">Phone</label>
+                  <label className="font-serif mb-1 text-left">Code</label>
                   <input
-                    className="w-full rounded-md border-gray-200 p-3 text-sm"
-                    placeholder="Phone Number"
-                    type="tel"
-                    id="phone"
+                    className="w-full rounded-md border border-blue-700 p-3 text-sm"
+                    placeholder="Code"
+                    type="text"
+                    name="code"
+                    required
+                    onChange={(e) => setCode(e.target.value)}
                   />
                 </div>
                 <div>
@@ -62,7 +130,10 @@ function AddNotes() {
                     className="w-full rounded-md border-gray-200 p-3 text-sm"
                     placeholder="Phone Number"
                     type="file"
-                    id="notes"
+                    accept="application/pdf"
+                    name="file"
+                    required
+                    onChange={(e) => setFile(e.target.files[0])}
                   />
                 </div>
               </div>
@@ -127,19 +198,20 @@ function AddNotes() {
                 <label className="font-serif mb-1 text-left">Message</label>
 
                 <textarea
-                  className="w-full rounded-md border-gray-200 p-3 text-sm"
+                  className="w-full rounded-md border border-blue-700 p-3 text-sm"
                   placeholder="Message"
                   rows="8"
-                  id="message"
+                  name="msg"
+                  onChange={(e) => setMsg(e.target.value)}
                 ></textarea>
               </div>
 
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                  className="inline-block w-full rounded-lg bg-green-600 px-5 py-3 font-medium text-white sm:w-auto"
                 >
-                  Send Enquiry
+                  Upload
                 </button>
               </div>
             </form>

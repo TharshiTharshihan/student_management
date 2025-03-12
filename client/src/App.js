@@ -12,10 +12,14 @@ import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import Form from "./components/student/Form";
 import AddNotes from "./components/teacher/AddNotes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer position="top-center" autoClose={3000} />
+
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
