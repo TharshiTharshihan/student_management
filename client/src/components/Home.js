@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -13,11 +13,10 @@ export default function Home() {
             <div className="flex flex-col">
               {/* Hero Title */}
               <h1 className="mb-4 text-4xl font-bold md:text-6xl md:leading-tight">
-                The Website You Want Without The Dev Time.
+                Learning Management System
               </h1>
               <p className="mb-6 max-w-lg text-sm text-gray-500 sm:text-xl md:mb-10 lg:mb-12">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus sit amet luctus venenatis, lectus
+                Faculty of Engineering
               </p>
               {/* Hero Button */}
               <div className="flex items-center">
@@ -36,7 +35,7 @@ export default function Home() {
                     alt="Education"
                     className="mr-2 inline-block max-h-4 w-5"
                   />
-                  <p>login as Teacher</p>
+                  <p>login as Guest</p>
                 </Link>
               </div>
             </div>

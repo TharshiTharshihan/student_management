@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, Link } from "react-router-dom";
@@ -19,7 +19,7 @@ function TeacherS() {
         icon: "error",
         title: "Oops...",
         text: "Password must be at least 8 characters long. 🔒",
-        icon: "warning",
+
         showCancelButton: true,
         confirmButtonText: "OK",
       });
@@ -65,7 +65,7 @@ function TeacherS() {
   return (
     <section>
       {/* Container */}
-      <h1 className="text-xl font-bold">Teacher Signup</h1>
+      <h1 className="text-4xl font-serif text-center p-3">Teacher Signup</h1>
       <div className="mx-auto w-full max-w-3xl px-5 py-16 md:px-10 md:py-20">
         {/* Component */}
         <div className="relative mx-auto max-w-xl bg-gray-100 px-8 py-12 text-center">

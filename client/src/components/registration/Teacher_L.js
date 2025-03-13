@@ -49,7 +49,7 @@ function TeacherL() {
   return (
     <section>
       {/* Container */}
-      <h1 className="text-xl font-bold">Teacher Login</h1>
+      <h1 className="text-4xl font-serif text-center p-3">Teacher Login</h1>
       <div className="mx-auto w-full max-w-3xl px-5 py-16 md:px-10 md:py-20 ">
         {/* Component */}
         <div className="relative mx-auto max-w-xl bg-gray-100 px-8 py-12 text-center">

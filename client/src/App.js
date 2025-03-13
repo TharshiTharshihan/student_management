@@ -17,23 +17,25 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ToastContainer position="top-center" autoClose={3000} />
+    <>
+      <BrowserRouter>
+        <ToastContainer position="top-center" autoClose={3000} />
 
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/s-signup" element={<StudentS />} />
-        <Route path="/t-signup" element={<TeacherS />} />
-        <Route path="/s-login" element={<StudentL />} />
-        <Route path="/t-login" element={<TeacherL />} />
-        <Route path="/t-d" element={<Tdashboard />} />
-        <Route path="/s-d" element={<Sdashboard />} />
-        <Route path="/form" element={<Form />} />
-        <Route path="/addnotes" element={<AddNotes />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/s-signup" element={<StudentS />} />
+          <Route path="/t-signup" element={<TeacherS />} />
+          <Route path="/s-login" element={<StudentL />} />
+          <Route path="/t-login" element={<TeacherL />} />
+          <Route path="/t-d" element={<Tdashboard />} />
+          <Route path="/s-d" element={<Sdashboard />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/addnotes" element={<AddNotes />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 }
 

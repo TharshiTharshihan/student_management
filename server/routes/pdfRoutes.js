@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "files");
@@ -15,6 +16,8 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+// Upload PDF
 router.post("/upload-files", upload.single("file"), async (req, res) => {
   if (!req.file) {
     return res
@@ -25,6 +28,9 @@ router.post("/upload-files", upload.single("file"), async (req, res) => {
   try {
     const newPdf = new pdfModel({
       name: req.body.name,
+      code: req.body.code,
+      module: req.body.module,
+      msg: req.body.msg,
       file: req.file.filename,
     });
 
@@ -35,7 +41,7 @@ router.post("/upload-files", upload.single("file"), async (req, res) => {
   }
 });
 
-// ✅ Route to get all stored PDFs
+//   get all
 router.get("/get-files", async (req, res) => {
   try {
     const pdfs = await pdfModel.find({});

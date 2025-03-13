@@ -1,29 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Bounce } from "react-toastify";
 
 function NavBar() {
-  const notify = () =>
-    toast.success("🦄 Wow so easy!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-    });
   return (
     <>
       <header className="bg-slate-200">
         <div className="mx-auto max-w-screen-2xl w-full px-4 sm:px-6 lg:px-8">
           <div className="flex h-28 items-center justify-between">
             <div className="md:flex md:items-center md:gap-12">
-              <Link className="block text-teal-600" href="#">
+              <Link className="block text-teal-600" to="/">
                 <span className="sr-only">Home</span>
                 <svg
                   className="h-8"
@@ -92,7 +78,7 @@ function NavBar() {
                       className="text-gray-500 transition hover:text-gray-500/75"
                       href="#"
                     >
-                      Blog
+                      Contact
                     </Link>
                   </li>
                 </ul>
@@ -102,19 +88,26 @@ function NavBar() {
             <div className="flex items-center gap-4">
               <div className="sm:flex sm:gap-4">
                 <Link
-                  onClick={notify}
-                  className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
-                  href="#"
+                  className="rounded-md bg-black px-5 py-2.5  "
+                  to="https://react.dev/"
                 >
-                  Login
+                  <img
+                    src="https://shopify.github.io/react-native-skia/img/logo.png"
+                    alt="React"
+                    className="w-6 h-6 size-4"
+                  />
                 </Link>
 
                 <div className="hidden sm:flex">
                   <Link
-                    className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
-                    href="#"
+                    className="rounded-md bg-black px-5 py-2.5"
+                    to="https://tailwindcss.com/"
                   >
-                    Register
+                    <img
+                      src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-dsc/events/Tailwind_CSS_Logo.svg_GkNDLAs.png"
+                      alt="React"
+                      className="w-6 h-6 "
+                    />
                   </Link>
                 </div>
               </div>
@@ -141,7 +134,6 @@ function NavBar() {
           </div>
         </div>
       </header>
-      <ToastContainer transition={Bounce} />
     </>
   );
 }

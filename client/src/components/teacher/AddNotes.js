@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { pdfjs } from "react-pdf";
 
@@ -14,7 +14,6 @@ function AddNotes() {
   const [module, setModule] = useState(null);
   const [msg, setMsg] = useState("");
   const [allImage, setAllImage] = useState(null);
-  const [pdfFile, setPdfFile] = useState(null); // To store the uploaded file ID
 
   const navigate = useNavigate();
 
@@ -32,6 +31,9 @@ function AddNotes() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("file", file);
+    formData.append("code", code);
+    formData.append("module", module);
+    formData.append("msg", msg);
     console.log(name, file);
 
     const result = await axios.post(
@@ -58,10 +60,10 @@ function AddNotes() {
       navigate("/t-d");
     }
   };
-  const showPdf = (pdf) => {
-    // window.open(`http://localhost:5000/files/${pdf}`, "_blank", "noreferrer");
-    setPdfFile(`http://localhost:5000/files/${pdf}`);
-  };
+  // const showPdf = (pdf) => {
+  //   // window.open(`http://localhost:5000/files/${pdf}`, "_blank", "noreferrer");
+  //   setPdfFile(`http://localhost:5000/files/${pdf}`);
+  // };
 
   return (
     <section className="bg-gray-100">
@@ -69,20 +71,18 @@ function AddNotes() {
         <div className="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
           <div className="lg:col-span-2 lg:py-12">
             <p className="max-w-xl text-lg">
-              At the same time, the fact that we are wholly owned and totally
-              independent from manufacturer and other group control gives you
-              confidence that we will only recommend what is right for you.
+              Don’t rely only on textbooks—watch videos, read blogs, or use
+              interactive platforms.Discussing topics with others can give new
+              perspectives and help with understanding.
             </p>
 
             <div className="mt-8">
-              <a href="#" className="text-2xl font-bold text-pink-600">
+              <a href="/" className="text-2xl font-bold text-pink-600">
                 {" "}
-                0151 475 4450{" "}
+                tharshihan2000@gmail.com{" "}
               </a>
 
-              <address className="mt-2 not-italic">
-                282 Kevin Brook, Imogeneborough, CA 58517
-              </address>
+              <address className="mt-2 not-italic">Contact me</address>
             </div>
           </div>
 

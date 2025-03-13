@@ -6,11 +6,11 @@ function Footer() {
     <footer className="bg-slate-400 py-8">
       <div className="mx-auto w-full max-w-7xl px-5 md:px-10">
         <div className="flex flex-col items-center">
-          <Link to="#" className="mb-4">
+          <Link to="/" className="mb-4">
             <img
-              src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a94d6f4e6cf96_Group%2047874-3.png"
+              src="https://miro.medium.com/v2/resize:fit:752/1*8BIjfZaq8Fdw7YXczkkZKg.png"
               alt="Logo"
-              className="max-h-8"
+              className="h-24 w-52"
             />
           </Link>
           <div className="text-center font-semibold text-sm">

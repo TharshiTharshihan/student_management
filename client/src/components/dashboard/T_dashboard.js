@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Tdashboard() {
   const [allImage, setAllImage] = useState(null);
-  const [pdfFile, setPdfFile] = useState(null); // Stores the selected PDF file
 
   useEffect(() => {
     getPdf();
@@ -33,7 +33,7 @@ function Tdashboard() {
 
       if (response.data.status === "ok") {
         alert("PDF deleted successfully!");
-        getPdf(); // Refresh the list after deletion
+        getPdf();
       } else {
         alert("Error deleting PDF");
       }
@@ -45,44 +45,46 @@ function Tdashboard() {
 
   return (
     <div className="uploaded p-4">
-      <h4 className="text-lg font-semibold mb-4">Uploaded PDFs:</h4>
-
-      <div className="output-div space-y-4">
+      <Link
+        to="/addnotes"
+        className="text-lg font-semibold mb-4 ml-3 bg-green-500 px-5 py-2 rounded-md"
+      >
+        Uploaded PDF
+      </Link>
+      <br />
+      <div className="output-div space-y-4 p-9">
         {allImage === null ? (
           <p>Loading PDFs...</p>
         ) : (
           allImage.map((data) => (
-            <div className="inner-div border p-2 rounded" key={data._id}>
-              <h6 className="font-medium">Title: {data.name}</h6>
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
-                onClick={() => showPdf(data.file)}
-              >
-                Show PDF
-              </button>
-              <button
-                className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
-                onClick={() => handleDelete(data.file)}
-              >
-                Delete PDF
-              </button>
+            <div
+              className="inner-div border p-4 rounded-lg shadow-md bg-white transition-transform translate-x-4 hover:translate-x-0"
+              key={data._id}
+            >
+              <h5 className="font-semibold text-lg text-gray-800 mb-2">
+                📄 {data.name}
+              </h5>
+              <h6 className="font-serif text-lg text-gray-400 mb-2">
+                {data.module} - {data.code}
+              </h6>
+              <div className="flex gap-3">
+                <button
+                  className="bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+                  onClick={() => showPdf(data.file)}
+                >
+                  📂 Show PDF
+                </button>
+                <button
+                  className="bg-red-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-red-600 transition duration-300"
+                  onClick={() => handleDelete(data.file)}
+                >
+                  🗑️ Delete PDF
+                </button>
+              </div>
             </div>
           ))
         )}
       </div>
-
-      {/* ✅ Show PDF Preview when a file is selected */}
-      {pdfFile && (
-        <div className="mt-6">
-          <h4 className="text-lg font-semibold">PDF Preview:</h4>
-          <iframe
-            src={pdfFile}
-            width="100%"
-            height="500px"
-            className="border rounded"
-          ></iframe>
-        </div>
-      )}
     </div>
   );
 }
