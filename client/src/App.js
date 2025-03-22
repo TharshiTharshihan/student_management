@@ -1,5 +1,11 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 
 import StudentS from "./components/registration/Student_S";
 import TeacherS from "./components/registration/Teacher_S";
@@ -15,6 +21,11 @@ import AddNotes from "./components/teacher/AddNotes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const ProtectedRoute = () => {
+  const user = null;
+  return user ? <Outlet /> : <Navigate to="/" />;
+};
+
 function App() {
   return (
     <>
@@ -28,10 +39,13 @@ function App() {
           <Route path="/t-signup" element={<TeacherS />} />
           <Route path="/s-login" element={<StudentL />} />
           <Route path="/t-login" element={<TeacherL />} />
-          <Route path="/t-d" element={<Tdashboard />} />
-          <Route path="/s-d" element={<Sdashboard />} />
-          <Route path="/form" element={<Form />} />
-          <Route path="/addnotes" element={<AddNotes />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/t-d" element={<Tdashboard />} />
+            <Route path="/s-d" element={<Sdashboard />} />
+            <Route path="/form" element={<Form />} />
+            <Route path="/addnotes" element={<AddNotes />} />
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>
