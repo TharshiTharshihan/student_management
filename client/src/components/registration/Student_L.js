@@ -14,7 +14,7 @@ function StudentL() {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/students/login", { email, password })
+      .post("https://student-management-p6yb.onrender.com/api/students/login", { email, password })
       .then((res) => {
         if (res.data.status === "success") {
           toast.success("Login successful!", {
