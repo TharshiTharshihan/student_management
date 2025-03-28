@@ -12,7 +12,7 @@ function TeacherL() {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/teachers/login", { em, pw })
+      .post("https://student-management-p6yb.onrender.com/api/teachers/login", { em, pw })
       .then((res) => {
         if (res.data.status === "success") {
           navigate("/t-d");
