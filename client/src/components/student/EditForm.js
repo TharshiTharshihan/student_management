@@ -32,7 +32,7 @@ function EditForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/students/signup", {
+      .post("https://student-management-p6yb.onrender.com/api/students/signup", {
         s1,
         s2,
         s3,

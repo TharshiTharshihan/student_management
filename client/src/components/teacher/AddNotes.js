@@ -21,7 +21,7 @@ function AddNotes() {
     getPdf();
   }, []);
   const getPdf = async () => {
-    const result = await axios.get("http://localhost:5000/api/pdfs/get-files");
+    const result = await axios.get("https://student-management-p6yb.onrender.com/api/pdfs/get-files");
     console.log(result.data.data);
     setAllImage(result.data.data);
   };
@@ -37,7 +37,7 @@ function AddNotes() {
     console.log(name, file);
 
     const result = await axios.post(
-      "http://localhost:5000/api/pdfs/upload-files",
+      "https://student-management-p6yb.onrender.com/api/pdfs/upload-files",
       formData,
       {
         headers: { "Content-Type": "multipart/form-data" },

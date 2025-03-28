@@ -12,7 +12,7 @@ function Tdashboard() {
   const getPdf = async () => {
     try {
       const result = await axios.get(
-        "http://localhost:5000/api/pdfs/get-files"
+        "https://student-management-p6yb.onrender.com/api/pdfs/get-files"
       );
       console.log(result.data.data);
       setAllImage(result.data.data);
@@ -22,13 +22,13 @@ function Tdashboard() {
   };
 
   const showPdf = (fileName) => {
-    window.open(`http://localhost:5000/files/${fileName}`, "_blank");
+    window.open(`https://student-management-p6yb.onrender.com/files/${fileName}`, "_blank");
   };
 
   const handleDelete = async (fileName) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/pdfs/delete/${fileName}`
+        `https://student-management-p6yb.onrender.com/api/pdfs/delete/${fileName}`
       );
 
       if (response.data.status === "ok") {
