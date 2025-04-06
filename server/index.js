@@ -15,7 +15,7 @@ app.use("/files", express.static(path.join(__dirname, "files")));
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://student-management-1-yft1.onrender.com",
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials: true,
   })
