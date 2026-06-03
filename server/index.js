@@ -13,10 +13,20 @@ const path = require("path");
 app.use(express.json());
 app.use("/files", express.static(path.join(__dirname, "files")));
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://student-management-1-yft1.onrender.com",
+];
+
 app.use(
   cors({
-    origin: "https://student-management-1-yft1.onrender.com",
-    methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );

@@ -27,7 +27,7 @@ function StudentS() {
     }
 
     axios
-      .post("https://student-management-p6yb.onrender.com/api/students/signup", {
+      .post("http://localhost:5000/api/students/signup", {
         fname,
         lname,
         email,

@@ -7,14 +7,16 @@ import { useNavigate, Link } from "react-router-dom";
 
 function StudentL() {
   const [email, setemail] = useState("");
+  const [visible, setvisible] = useState(false);
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
+
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("https://student-management-p6yb.onrender.com/api/students/login", { email, password })
+      .post("http://localhost:5000/api/students/login", { email, password })
       .then((res) => {
         if (res.data.status === "success") {
           toast.success("Login successful!", {
@@ -117,8 +119,9 @@ function StudentL() {
                 </div>
                 <div className="relative flex flex-col">
                   <label className="font-bold mb-1 text-left">Password</label>
+                  <div className="relative">
                   <input
-                    type="password"
+                    type={visible ? "text" : "password"}
                     className="block h-9 w-full rounded-md border border-black px-3 py-6 text-sm text-black"
                     name="pswd"
                     placeholder="PASSWORD"
@@ -128,6 +131,14 @@ function StudentL() {
                       setpassword(e.target.value);
                     }}
                   />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-black"
+                    onClick={() => setvisible(!visible)}
+                  >
+                    {visible ? "🫣" : "😑"}
+                  </button>
+                  </div>
                 </div>
 
                 <label className="flex items-center justify-start mb-6">

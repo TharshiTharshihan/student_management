@@ -22,7 +22,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProtectedRoute = () => {
-  const user = null;
+  const user = true;
   return user ? <Outlet /> : <Navigate to="/" />;
 };
 
